@@ -45,14 +45,14 @@
                     class="w-full border border-[#E4E1DA] rounded-xl pl-11 pr-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1C2230]/10 focus:border-[#1C2230]">
             </div>
 
-            <select name="gender" onchange="this.form.submit()"
+            <select name="gender"
                 class="lg:col-span-2 w-full border border-[#E4E1DA] rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1C2230]/10 focus:border-[#1C2230] bg-white">
                 <option value="">All Genders</option>
                 <option value="Laki-laki" {{ $gender == 'Laki-laki' ? 'selected' : '' }}>Laki-laki</option>
                 <option value="Perempuan" {{ $gender == 'Perempuan' ? 'selected' : '' }}>Perempuan</option>
             </select>
 
-            <select name="education" onchange="this.form.submit()"
+            <select name="education"
                 class="lg:col-span-2 w-full border border-[#E4E1DA] rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1C2230]/10 focus:border-[#1C2230] bg-white">
                 <option value="">All Education</option>
                 @foreach (['SMA/SMK', 'D3', 'S1', 'S2'] as $edu)
@@ -61,7 +61,7 @@
                 @endforeach
             </select>
 
-            <select name="position" onchange="this.form.submit()"
+            <select name="position"
                 class="lg:col-span-2 w-full border border-[#E4E1DA] rounded-xl px-4 py-3 text-sm focus:outline-none focus:ring-2 focus:ring-[#1C2230]/10 focus:border-[#1C2230] bg-white">
                 <option value="">All Positions</option>
                 @foreach ($positions as $pos)
@@ -257,65 +257,65 @@
                             @endif
                         </td>
                     </tr>
-                @endempty
-        </tbody>
-    </table>
+                @endforelse
+            </tbody>
+        </table>
 
-</div>
-
-@if ($employees->hasPages())
-    <div class="mt-6">
-        {{ $employees->links() }}
     </div>
-@endif
 
-<!-- Delete Confirmation Modal -->
-<div id="deleteModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
-    <div class="bg-white rounded-2xl shadow-xl w-full max-w-sm p-6">
-
-        <div class="w-12 h-12 rounded-full bg-[#B4423F]/10 flex items-center justify-center mb-4">
-            <svg class="w-6 h-6 text-[#B4423F]" fill="none" viewBox="0 0 24 24" stroke="currentColor"
-                stroke-width="2">
-                <path stroke-linecap="round" stroke-linejoin="round"
-                    d="M19 7l-.867 12.142A2 2 0 0 1 16.138 21H7.862a2 2 0 0 1-1.995-1.858L5 7m5 4v6m4-6v6M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3M4 7h16" />
-            </svg>
+    @if ($employees->hasPages())
+        <div class="mt-6">
+            {{ $employees->links() }}
         </div>
+    @endif
 
-        <h3 class="font-display text-lg font-semibold mb-1">Delete employee?</h3>
-        <p class="text-[#6B7280] text-sm mb-6">
-            <span id="deleteName" class="font-medium text-[#1C2230]"></span> will be permanently removed from your
-            records. This can't be undone.
-        </p>
+    <!-- Delete Confirmation Modal -->
+    <div id="deleteModal" class="hidden fixed inset-0 bg-black/50 flex items-center justify-center z-50 px-4">
+        <div class="bg-white rounded-2xl shadow-xl w-full max-w-sm p-6">
 
-        <form id="deleteForm" method="POST">
-            @csrf
-            @method('DELETE')
-
-            <div class="flex gap-3">
-                <button type="button" onclick="closeDeleteModal()"
-                    class="flex-1 px-4 py-3 rounded-xl border border-[#E4E1DA] text-sm font-medium hover:bg-[#F6F5F1]">
-                    Cancel
-                </button>
-
-                <button type="submit"
-                    class="flex-1 px-4 py-3 rounded-xl bg-[#B4423F] text-white text-sm font-medium hover:bg-[#8f312e]">
-                    Delete
-                </button>
+            <div class="w-12 h-12 rounded-full bg-[#B4423F]/10 flex items-center justify-center mb-4">
+                <svg class="w-6 h-6 text-[#B4423F]" fill="none" viewBox="0 0 24 24" stroke="currentColor"
+                    stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round"
+                        d="M19 7l-.867 12.142A2 2 0 0 1 16.138 21H7.862a2 2 0 0 1-1.995-1.858L5 7m5 4v6m4-6v6M9 7V4a1 1 0 0 1 1-1h4a1 1 0 0 1 1 1v3M4 7h16" />
+                </svg>
             </div>
-        </form>
+
+            <h3 class="font-display text-lg font-semibold mb-1">Delete employee?</h3>
+            <p class="text-[#6B7280] text-sm mb-6">
+                <span id="deleteName" class="font-medium text-[#1C2230]"></span> will be permanently removed from your
+                records. This can't be undone.
+            </p>
+
+            <form id="deleteForm" method="POST">
+                @csrf
+                @method('DELETE')
+
+                <div class="flex gap-3">
+                    <button type="button" onclick="closeDeleteModal()"
+                        class="flex-1 px-4 py-3 rounded-xl border border-[#E4E1DA] text-sm font-medium hover:bg-[#F6F5F1]">
+                        Cancel
+                    </button>
+
+                    <button type="submit"
+                        class="flex-1 px-4 py-3 rounded-xl bg-[#B4423F] text-white text-sm font-medium hover:bg-[#8f312e]">
+                        Delete
+                    </button>
+                </div>
+            </form>
+        </div>
     </div>
-</div>
 
-<script>
-    function openDeleteModal(id, name) {
-        document.getElementById('deleteName').innerText = name;
-        document.getElementById('deleteForm').action = `/employees/${id}`;
-        document.getElementById('deleteModal').classList.remove('hidden');
-    }
+    <script>
+        function openDeleteModal(id, name) {
+            document.getElementById('deleteName').innerText = name;
+            document.getElementById('deleteForm').action = `/employees/${id}`;
+            document.getElementById('deleteModal').classList.remove('hidden');
+        }
 
-    function closeDeleteModal() {
-        document.getElementById('deleteModal').classList.add('hidden');
-    }
-</script>
+        function closeDeleteModal() {
+            document.getElementById('deleteModal').classList.add('hidden');
+        }
+    </script>
 
 @endsection

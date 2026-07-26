@@ -6,7 +6,7 @@
 
     <div class="mb-8">
         <h2 class="font-display text-2xl font-semibold">Overview</h2>
-        <p class="text-[#6B7280] text-sm mt-1">A snapshot of your workforce composition.</p>
+        <p class="text-[#6B7280] text-sm mt-1">Manage and monitor employee information efficiently.</p>
     </div>
 
     <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-5 mb-8">
